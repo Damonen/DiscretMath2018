@@ -1,0 +1,146 @@
+﻿<!Doctype html>
+
+<html>
+	<head>
+		<title>
+			Lab#1
+		</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<script>
+			function sumA(ar1, ar2){
+				var res1 = new Array();
+				res1 = res1.concat(ar1);
+				for(var i = 0; i < ar2.length; i++){
+					var inn = true;
+					for(var ii = 0; ii < ar1.length; ii++){
+						if(ar2[i] == ar1[ii]){
+							inn = false;
+						}
+					}
+					if(inn){
+						res1.push(ar2[i]);
+					}
+				}
+				return res1
+			}
+		
+			function crossA(ar1, ar2){	
+				var res = new Array();
+				for(var i = 0; i < ar2.length; i++){
+					var inn = false;
+					for(var ii = 0; ii < ar1.length; ii++){
+						if(ar2[i] == ar1[ii]){
+							inn = true;
+						}
+					}
+					if(inn){
+						res.push(ar2[i]);
+					}
+				}
+				return res;
+			}
+			
+			function minusA(ar1, ar2){
+				for(var i = 0; i < ar2.length; i++){
+					var inn = true;
+					for(var ii = 0; ii < ar1.length; ii++){
+						if(ar2[i] == ar1[ii]){
+							inn = false;
+						}
+					}
+					if(inn){
+						return "Дополнение невозможно";
+					}
+				}
+			
+				for(var i = 0; i < ar1.length; i++){
+					for(var ii = 0; ii < ar2.length; ii++){
+						if(ar1[i] == ar2[ii]){
+							ar1.splice(i, 1);
+						}
+					}
+				}
+				return ar1;
+			}
+			
+			function Check(arr){
+				for(var i = 0; i < arr.length; i++){
+					if(arr[i].length != 3){
+						return false;
+					} else if(!(arr[i].match(/[a-z]\d[a-z]/i))){
+						return false;
+					}
+				}
+				return true;
+			}
+			
+			function inn(){
+				var mass1 = document.getElementById("mass1").value.split(";");
+				var mass2 = document.getElementById("mass2").value.split(";");
+				var aV1 = Check(mass1);
+				var aV2 = Check(mass2);
+				if (!(aV1 && aV2)){
+					if(aV1){
+						document.getElementById("out").innerHTML = "First mass valid<br>";
+					} else {
+						document.getElementById("out").innerHTML = "First mass invalid<br>";
+					}
+					if(aV2){
+						document.getElementById("out").innerHTML += "Second mass valid<br>";
+					} else {
+						document.getElementById("out").innerHTML += "Second mass invalid<br>";
+					}
+				} else {
+					document.getElementById("out").innerHTML = "<br>Объединение множеств = " + sumA(mass1, mass2);
+					document.getElementById("out").innerHTML += "<br>Пересечение множеств = " + crossA(mass1, mass2);
+					document.getElementById("out").innerHTML += "<br>Симметрическая разность = " + minusA(sumA(mass1, mass2), crossA(mass1, mass2));
+					if (mass1.length > mass2.length){
+						document.getElementById("out").innerHTML += "<br>Дополнение = " + minusA(mass1, mass2);
+					} else {
+						document.getElementById("out").innerHTML += "<br>Дополнение = " + minusA(mass2, mass1);
+					}
+				}
+				document.getElementById("out").innerHTML += "<br>" + mass1;
+				document.getElementById("out").innerHTML += "<br>" + mass2;
+				
+			}
+		</script>
+		<form>
+			Mass #1<br>
+			<input type="text" id="mass1" value="q1q;q2q;q3q"/><br>
+			Mass #2<br>
+			<input type="text" id="mass2" value="q3q;q4q"/><br>
+			<input type="button" value="submit" onclick="inn()"/>
+		</form>
+		<div id="out"></div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</body>
+</html>
