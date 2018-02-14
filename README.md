@@ -1,1 +1,0 @@
-# DiscretMath2018
