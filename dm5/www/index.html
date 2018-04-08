@@ -1,0 +1,37 @@
+<!Doctype html>
+
+<html>
+	<head>
+		<title>
+			Lab#5
+		</title>
+		<meta charset="utf-8">
+		<script src="/scripts.js"></script>
+		<style>
+			table {
+				table-layout: fixed;
+			}
+			table, tr, td {
+				text-align: center;
+				border: 1px solid #ccc;
+				border-collapse: collapse;
+			}
+			tr:nth-child(even) {
+				background-color: rgba(0, 0, 255, 0.03);
+			}
+			tr, td {
+				width: 20px;
+				height: 20px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<form>
+			Введите граф<br>
+			<textarea type="text" id="mat1" placeholder="(a,b);(c,d);(b,e)"></textarea><br>
+			<input type="button" value="Проверить" onclick="inn()"/>
+		</form>
+		<div id="out"></div>
+	</body>
+</html>
