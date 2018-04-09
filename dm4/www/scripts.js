@@ -196,12 +196,13 @@ function checkPoint(obj) {
 		if(obj.unic[1][minI] != 0){
 			if(obj.unic[1][minI] > obj.unic[1][currNode] + obj.tWei[currNode][minI]) {
 				obj.unic[1][minI] = obj.unic[1][currNode] + obj.tWei[currNode][minI];
+				obj.unic[3][minI] = obj.unic[3][currNode] + "<br>" + String.fromCharCode(minI + 97);
 			}
 		} else {
 			obj.unic[1][minI] = obj.unic[1][currNode] + obj.tWei[currNode][minI];
+			obj.unic[3][minI] = obj.unic[3][currNode] + "<br>" + String.fromCharCode(minI + 97);
 		}
 		obj.tWei[currNode][minI] = 0;
-		obj.unic[3][minI] = obj.unic[3][currNode] + "<br>" + String.fromCharCode(minI + 97);
 		if(obj.unic[2][minI] == false) {
 			obj.one = minI;
 			obj = checkPoint(obj);
@@ -294,14 +295,3 @@ function inn() {
 	out.innerHTML += "<br>" + pathToStr(q.unic);
 	
 }
-
-
-
-
-
-
-
-
-
-
-
