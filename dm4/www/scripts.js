@@ -1,4 +1,4 @@
-﻿/*
+/*
 *Функция Check(str) 
 *
 *@param str строка с отношением
@@ -22,7 +22,7 @@ function check(str)	{
 	}
 	for(var i = pairs.length - 1; i >= 0; i--)	{
 		for(var ii = i - 1; ii >= 0; ii--)	{
-			if((pairs[i].charAt(1) == pairs[ii].charAt(1)) || (pairs[i].charAt(3) == pairs[ii].charAt(3)))	{	
+			if((pairs[i].charAt(1) == pairs[ii].charAt(1)) && (pairs[i].charAt(3) == pairs[ii].charAt(3)))	{	
 				return false;
 			}
 		}
