@@ -22,9 +22,9 @@ function check(str)	{
 	}
 	for(var i = pairs.length - 1; i >= 0; i--)	{
 		for(var ii = i - 1; ii >= 0; ii--)	{
-			if((pairs[i].charAt(1) == pairs[ii].charAt(1)) && (pairs[i].charAt(3) == pairs[ii].charAt(3)))	{	
+			/*if((pairs[i].charAt(1) == pairs[ii].charAt(1)) && (pairs[i].charAt(3) == pairs[ii].charAt(3)))	{	
 				return false;
-			}
+			}*/
 		}
 	}
 	pairs.forEach(function(item, index) {
@@ -189,25 +189,48 @@ function findMin(arr) {
 *@return obj - объект содержащий в себе матрицу весов, массив с кратчайшим путем и вершину из которой нужно искать пути						
 */
 function checkPoint(obj) {
-	var currNode = obj.one;
+	var currNode = obj.one,
+	tempAr = new Array();
+	tempAr = tempAr.concat(obj.tWei[currNode]);
 	obj.unic[2][currNode] = true;
 	while(isZero(obj.tWei[currNode])) {
 		var minI = findMin(obj.tWei[currNode]);
-		if(obj.unic[1][minI] != 0){
+		if(obj.unic[1][minI] != 0) {
 			if(obj.unic[1][minI] > obj.unic[1][currNode] + obj.tWei[currNode][minI]) {
 				obj.unic[1][minI] = obj.unic[1][currNode] + obj.tWei[currNode][minI];
 				obj.unic[3][minI] = obj.unic[3][currNode] + "<br>" + String.fromCharCode(minI + 97);
 			}
 		} else {
-			obj.unic[1][minI] = obj.unic[1][currNode] + obj.tWei[currNode][minI];
-			obj.unic[3][minI] = obj.unic[3][currNode] + "<br>" + String.fromCharCode(minI + 97);
+			if(obj.unic[3][currNode] != obj.start) {
+				var str = String.fromCharCode(currNode + 97) + "<br>" + String.fromCharCode(currNode + 97);
+				if(obj.unic[3][currNode] != str) {
+					obj.unic[1][minI] = obj.unic[1][currNode] + obj.tWei[currNode][minI];
+					obj.unic[3][minI] = obj.unic[3][currNode] + "<br>" + String.fromCharCode(minI + 97);
+				} else {
+					obj.unic[1][minI] = obj.tWei[currNode][minI];
+					obj.unic[3][minI] += "<br>" + String.fromCharCode(minI + 97);
+				}	
+					
+			} else {
+				obj.unic[1][minI] = obj.tWei[currNode][minI];
+				obj.unic[3][minI] += "<br>" + String.fromCharCode(minI + 97);
+			}
 		}
 		obj.tWei[currNode][minI] = 0;
+	}
+	
+	while(isZero(tempAr)) {
+		var minI = findMin(tempAr);
+		tempAr[minI] = 0;
 		if(obj.unic[2][minI] == false) {
 			obj.one = minI;
 			obj = checkPoint(obj);
 		}
 	}
+	
+	
+	
+	
 	return obj;
 }
 
@@ -232,7 +255,7 @@ function shortestPath(unic, tableWeight, one) {
 	for(var i = 0; i < unic[3].length; i++) {
 		unic[3][i] = String.fromCharCode(one + 97);
 	}
-	var obj = {unic:unic, tWei:tableWeight, one:one};	
+	var obj = {unic:unic, tWei:tableWeight, one:one, start:String.fromCharCode(one + 97)};	
 	var q = checkPoint(obj);
 	return q;
 }
@@ -295,3 +318,24 @@ function inn() {
 	out.innerHTML += "<br>" + pathToStr(q.unic);
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
