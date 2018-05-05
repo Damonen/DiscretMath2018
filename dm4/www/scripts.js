@@ -60,6 +60,7 @@ function arrToStr(out) {
 		outStr += "</tr>";
 	}
 	outStr += "</table>";
+	
 	return outStr;
 }
 
@@ -152,6 +153,7 @@ function isZero(arr) {
 			return true;
 		}
 	}
+	
 	return false;
 }
 
@@ -228,9 +230,6 @@ function checkPoint(obj) {
 		}
 	}
 	
-	
-	
-	
 	return obj;
 }
 
@@ -255,8 +254,8 @@ function shortestPath(unic, tableWeight, one) {
 	for(var i = 0; i < unic[3].length; i++) {
 		unic[3][i] = String.fromCharCode(one + 97);
 	}
-	var obj = {unic:unic, tWei:tableWeight, one:one, start:String.fromCharCode(one + 97)};	
-	var q = checkPoint(obj);
+	var obj = {unic:unic, tWei:tableWeight, one:one, start:String.fromCharCode(one + 97)},	
+		q = checkPoint(obj);
 	return q;
 }
 
@@ -309,33 +308,10 @@ function inn() {
 	}
 	
 	var tableWeight = matrReach(matrix);
-		
 	out.innerHTML = "Матрица весов:<br>";
 	out.innerHTML += arrToStr(tableWeight);
 	
 	var q = shortestPath(unic(tableWeight), tableWeight, strt);
-	
 	out.innerHTML += "<br>" + pathToStr(q.unic);
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
